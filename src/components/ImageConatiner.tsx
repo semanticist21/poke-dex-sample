@@ -1,6 +1,6 @@
 import strsToClass from "../converter/classConverter";
 
-export interface AvatarProps {
+export interface ImageContainerProps {
   containerClassName: string;
   sizeClass: string;
   imgPath: string;
@@ -8,7 +8,7 @@ export interface AvatarProps {
   alt?: string;
 }
 
-const Avatar: React.FC<AvatarProps> = ({
+const ImageContainer: React.FC<ImageContainerProps> = ({
   sizeClass,
   imgPath,
   bgColor = "bg-transparent",

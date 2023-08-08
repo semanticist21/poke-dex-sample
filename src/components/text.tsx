@@ -2,7 +2,7 @@ import strsToClass from "../converter/classConverter";
 import { FontSize, FontWeight } from "../data/enums";
 import { Color } from "../data/types";
 
-export interface TextProps {
+export interface TextBoxProps {
   content: string;
   fontSize?: FontSize;
   fontWeight?: FontWeight;
@@ -10,7 +10,7 @@ export interface TextProps {
   bgColor?: Color;
 }
 
-const Text: React.FC<TextProps> = ({
+const TextBox: React.FC<TextBoxProps> = ({
   content,
   fontSize = FontSize.BASE,
   fontWeight = FontWeight.NORMAL,
@@ -20,9 +20,7 @@ const Text: React.FC<TextProps> = ({
   const base = "text-center items-center";
   const input = [fontSize, fontWeight, txtColor, bgColor];
 
-  return (
-    <span className={strsToClass(base, ...input)}>{content}</span>
-  );
+  return <span className={strsToClass(base, ...input)}>{content}</span>;
 };
 
-export default Text;
+export default TextBox;
