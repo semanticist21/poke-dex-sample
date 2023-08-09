@@ -1,10 +1,7 @@
 import Paginator from "components/Page/Paginatior";
 import { useEffect, useMemo, useState } from "react";
 import getImgPathDic from "utils/imgPathDic";
-import  {
-  genPokeUrl,
-  spreadRequestAsync,
-} from "utils/pokeApiQuery";
+import { genPokeUrl, getAllResp } from "utils/pokeApiQuery";
 import Card, { CardProps } from "./Card";
 
 export interface CardItemListProps {
@@ -18,7 +15,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
   const [itemProps, setItemProps] = useState<Array<CardProps>>([]);
 
   const dic: Map<number, string> = useMemo(() => getImgPathDic(), []);
-  const wholeItem: Array<CardProps> = useMemo(()=> {
+  const wholeItem: Array<CardProps> = useMemo(() => {
     let itemPropsArr: Array<CardProps> = [];
 
     dic.forEach((v, k) =>
@@ -29,38 +26,44 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
     );
 
     return itemPropsArr;
-  },[]);
+  }, []);
 
   useEffect(() => {
-    setItemOffset((currentPage - 1) * limit);
-  }, [limit, currentPage]);
+    const newOffset = (currentPage - 1) * limit;
+    const showItemProps = wholeItem.slice(newOffset, newOffset + limit);
 
-  useEffect(() => {
-    const showItemProps = wholeItem.slice(itemOffset, itemOffset + limit);
-    setItemProps(showItemProps);
-  }, [itemOffset]);
-
-  useEffect(() => {
     const makeNmRequestsAsync = async (itemProps: Array<CardProps>) => {
-      const urls = itemProps.map((props) => genPokeUrl(props.index + 1));
+      const urls = itemProps.map((props) =>
+        genPokeUrl(
+          parseInt(
+            props.imgPath!.replace(".png", "").replace("/asset/imgs/", "")
+          )
+        )
+      );
 
-      const data = await spreadRequestAsync(urls);
-      const names = data.map((resp) => resp.data.name);
+      const data = await getAllResp(urls);
+      const names = data.map((resp) => (resp ? resp.data.name : "??"));
       const newPropsWithName: Array<CardProps> = itemProps.map((props, idx) =>
         Object.assign(props, { title: names[idx] })
       );
 
       setItemProps(newPropsWithName);
+      setItemOffset(newOffset);
     };
 
-    makeNmRequestsAsync(itemProps);
-  }, [itemProps]);
+    makeNmRequestsAsync(showItemProps);
+  }, [limit, currentPage]);
 
   return (
     <div className="flex flex-col h-screen w-100%">
       {itemProps.length ? (
         itemProps.map((props, idx) => (
-          <Card key={idx} imgPath={props.imgPath} index={props.index} title={props.title}/>
+          <Card
+            key={idx}
+            imgPath={props.imgPath}
+            index={props.index}
+            title={props.title}
+          />
         ))
       ) : (
         <div></div>

@@ -1,5 +1,5 @@
 import strsToClass from "utils/classConverter";
-import logo from "../asset/imgs/0.png";
+import errorImg from "../asset/imgs/0.png";
 import { useEffect, useRef } from "react";
 
 export interface CardImageContainerProps {
@@ -10,12 +10,12 @@ export interface CardImageContainerProps {
 
 const CardImageContainer: React.FC<CardImageContainerProps> = ({
   bgColor = "bg-transparent",
-  imgPath = "/asset/imgs/1.png",
+  imgPath = "/asset/imgs/0.png",
   alt = "불러오는 중...",
 }) => {
   const base = "scale-[130%]";
   useEffect(() => {
-    alt = imgPath === "/asset/imgs/1.png" ? alt : "";
+    alt = imgPath === "/asset/imgs/0.png" ? alt : "";
   }, [imgPath]);
 
   return (
@@ -24,6 +24,7 @@ const CardImageContainer: React.FC<CardImageContainerProps> = ({
         className={strsToClass(base, bgColor)}
         src={`${process.env.PUBLIC_URL}${imgPath}`}
         alt={alt}
+        onError={(e) => (e.currentTarget.src = `${process.env.PUBLIC_URL}/asset/imgs/0.png`)}
       />
     </>
   );

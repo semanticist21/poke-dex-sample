@@ -10,10 +10,26 @@ export const genPokeUrl = (id: number) =>
 export const requestByAxios = (url: string) => {
   axios.get(url);
 };
-export const spreadRequestAsync = async (urls: Array<string>) => {
-  axiosRetry(axios, { retries: 3 });
+export const getAllResp = async (urls: Array<string>) => {
+  axiosRetry(axios, { retries: 1 });
 
-  return axios.all(urls.map((url) => axios.get(url)));
+  let resps: Array<AxiosResponse<any, any> | null> = [];
+
+  const pipeline = urls
+    .map((url) => axios.get(url))
+    .map((request) => {
+      return request
+        .then((resp) => {
+          resps.push(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+          resps.push(null);
+        });
+    });
+
+  await Promise.all(pipeline);
+  return resps; 
 };
 
 // fetch functions
