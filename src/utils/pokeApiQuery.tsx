@@ -26,7 +26,7 @@ const genUseQueries = (
   dic: Map<number, string>
 ) => {
   if (dic.size !== callbacks.length) {
-    throw error("dictionary and callbacks sizes are not matched.");
+    throw error("dictionary and callbacks size are not matched.");
   }
 
   const idxs = Array.from(dic.keys()).map((k) => [baseKey, k]);
