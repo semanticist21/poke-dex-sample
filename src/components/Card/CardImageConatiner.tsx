@@ -11,7 +11,7 @@ export interface CardImageContainerProps {
 const CardImageContainer: React.FC<CardImageContainerProps> = ({
   bgColor = "bg-transparent",
   imgPath = "/asset/imgs/0.png",
-  alt = "불러오는 중...",
+  alt = "불러오는 중..",
 }) => {
   const base = "scale-[130%]";
   useEffect(() => {
