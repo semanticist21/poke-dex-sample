@@ -1,16 +1,8 @@
-import { useEffect } from "react";
 import Card from "../components/Card/Card";
 import DescTextBox from "../components/Text/DescTextBox";
 import Header from "../components/Text/Header";
-import requestPokeDataAsync from "utils/pokeApi";
-import getImgPathDic from "utils/imgPathDic";
 
 const MainPage = () => {
-  useEffect(() => {
-    const dic = getImgPathDic();
-    requestPokeDataAsync(dic)
-  });
-
   return (
     <div className="flex flex-col items-center h-screen w-screen bg-white">
       <div className="pl-5 pt-6 pr-9 w-full">
