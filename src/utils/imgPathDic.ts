@@ -3,7 +3,7 @@ const getImgPathDic = () => {
   let map = new Map<number, string>();
 
   // 1~1010.png
-  //10001~10263.png
+  // 10001~10263.png
   [...Array.from(Array(1010).keys())].forEach((n) =>
     map.set(n + 1, `${n + 1}${suffix}`)
   );

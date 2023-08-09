@@ -7,7 +7,7 @@ const Header: React.FC = ({}) => {
   const titleB = "dex";
 
   return (
-    <div className="flex items-start w-screen">
+    <div className="flex items-start w-screen overflow-hidden select-none">
       <TextBox
         content={titleF}
         fontWeight={FontWeight.BOLD}

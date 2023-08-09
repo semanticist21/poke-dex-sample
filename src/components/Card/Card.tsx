@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
 
   return (
     <div className="my-[1.35rem]">
-      <div className="flex min-w-[35rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] bg-white">
+      <div className="flex min-w-[30rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] bg-opacity-100 hover:bg-gray-50">
         {<CardImageContainer imgPath={imgPath} />}
         <div className="flex items-center content-center ps-7">
           <TextBox
@@ -32,12 +32,12 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
             fontWeight={FontWeight.MEDIUM}
           />
         </div>
-        <div className="ml-auto mt-auto pe-4 pb-1">
+        <div className="ml-auto mt-auto pe-4 pb-1 select-none">
           <TextBox
             content={`${indexMemo}`}
             fontSize={FontSize.XL3}
             fontWeight={FontWeight.BOLD}
-            fontColor="text-[#0000003c]"
+            fontColor="text-[#0000001c]"
           />
         </div>
       </div>

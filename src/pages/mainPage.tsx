@@ -1,10 +1,11 @@
+import CardItemList from "components/Card/CardItemList";
 import Card from "../components/Card/Card";
 import DescTextBox from "../components/Text/DescTextBox";
 import Header from "../components/Text/Header";
 
 const MainPage = () => {
   return (
-    <div className="flex flex-col items-center h-screen w-screen bg-white">
+    <div className="flex flex-col items-center h-screen w-screen">
       <div className="pl-5 pt-6 pr-9 w-full">
         <div className="flex flex-col items-start w-screen ">
           <Header />
@@ -12,11 +13,7 @@ const MainPage = () => {
           <DescTextBox />
           <div className="h-1 bg-transparent" />
         </div>
-        <Card index={1} />
-        <Card index={2} />
-        <Card index={3} />
-        <Card index={4} />
-        <Card index={5} />
+        <CardItemList limit={10}/>
       </div>
     </div>
   );
