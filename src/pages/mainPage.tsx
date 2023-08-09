@@ -1,62 +1,23 @@
-import Card from "../components/Card";
-import TextBox from "../components/TextBox";
-import { FontSize, FontWeight } from "../data/enums";
+import { useEffect } from "react";
+import Card from "../components/Card/Card";
+import DescTextBox from "../components/Text/DescTextBox";
+import Header from "../components/Text/Header";
+import requestPokeDataAsync from "utils/pokeApi";
+import getImgPathDic from "utils/imgPathDic";
 
 const MainPage = () => {
-  const eWord = "é";
-  const titleF = "Pok";
-  const titleB = "dex";
-  const descF = "The Pok";
-  const descB =
-    "dex Contains detailed stats for evey creature from the Pokémon games.";
+  useEffect(() => {
+    const dic = getImgPathDic();
+    requestPokeDataAsync(dic)
+  });
 
   return (
     <div className="flex flex-col items-center h-screen w-screen bg-white">
       <div className="pl-5 pt-6 pr-9 w-full">
         <div className="flex flex-col items-start w-screen ">
-          <div className="flex">
-            <TextBox
-              content={titleF}
-              fontWeight={FontWeight.BOLD}
-              fontSize={FontSize.XL4}
-              fontColor="text-[#C4584F]"
-            />
-            <div className="pt-[0.2rem]">
-              <TextBox
-                content={eWord}
-                fontWeight={FontWeight.EXTRABOLD}
-                fontSize={FontSize.XL4}
-                fontColor="text-[#C4584F]"
-              />
-            </div>
-            <TextBox
-              content={titleB}
-              fontWeight={FontWeight.BOLD}
-              fontSize={FontSize.XL4}
-              fontColor="text-[#C4584F]"
-            />
-          </div>
-
+          <Header />
           <div className="h-7 bg-transparent" />
-          <div className="flex">
-            <TextBox
-              content={descF}
-              fontWeight={FontWeight.MEDIUM}
-              fontColor="text-[#6C727F]"
-            />
-            <div className="pt-[0.04rem]">
-              <TextBox
-                content={eWord}
-                fontWeight={FontWeight.BOLD}
-                fontColor="text-[#6C727F]"
-              />
-            </div>
-            <TextBox
-              content={descB}
-              fontWeight={FontWeight.MEDIUM}
-              fontColor="text-[#6C727F]"
-            />
-          </div>
+          <DescTextBox />
           <div className="h-1 bg-transparent" />
         </div>
         <Card index={1} />

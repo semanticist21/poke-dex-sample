@@ -1,4 +1,4 @@
-import strsToClass from "../converter/classConverter";
+import strsToClass from "utils/classConverter";
 import logo from "../asset/imgs/0.png";
 import { useEffect, useRef } from "react";
 
@@ -14,6 +14,9 @@ const CardImageContainer: React.FC<CardImageContainerProps> = ({
   alt = "불러오는 중...",
 }) => {
   const base = "scale-[130%]";
+  useEffect(() => {
+    alt = imgPath === "/asset/imgs/1.png" ? alt : "";
+  }, [imgPath]);
 
   return (
     <>

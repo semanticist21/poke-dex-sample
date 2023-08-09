@@ -1,8 +1,7 @@
-import { Color } from "../data/types";
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useMemo } from "react";
 import CardImageContainer from "./CardImageConatiner";
-import TextBox from "./TextBox";
-import { FontSize, FontWeight } from "../data/enums";
+import TextBox from "../Text/TextBox";
+import { FontSize, FontWeight } from "data/enums";
 
 export interface CardProps {
   imgPath?: string;
@@ -24,7 +23,7 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
 
   return (
     <div className="my-[1.35rem]">
-    <div className="flex min-w-[35rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] bg-white">
+      <div className="flex min-w-[35rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] bg-white">
         {<CardImageContainer imgPath={imgPath} />}
         <div className="flex items-center content-center ps-7">
           <TextBox
@@ -41,7 +40,7 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
             fontColor="text-[#0000003c]"
           />
         </div>
-    </div>
+      </div>
     </div>
   );
 };

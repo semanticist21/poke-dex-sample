@@ -1,6 +1,6 @@
-import strsToClass from "../converter/classConverter";
-import { FontSize, FontWeight } from "../data/enums";
-import { Color } from "../data/types";
+import strsToClass from "../../utils/classConverter";
+import { FontSize, FontWeight } from "../../data/enums";
+import { Color } from "../../data/types";
 
 export interface TextBoxProps {
   content: string;
