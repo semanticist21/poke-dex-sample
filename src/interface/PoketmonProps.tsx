@@ -1,6 +1,6 @@
 export interface PoketmonProps {
-  id?: number;
-  name: string;
+  pokeId?: number;
+  pokeName?: string;
   types?: string;
   species?: string;
   speciesUrl?: string;

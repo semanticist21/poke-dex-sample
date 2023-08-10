@@ -8,7 +8,7 @@ export interface CharacterModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (v: boolean) => void;
   imgPath?: string;
-  props: PoketmonProps;
+  pokeProps: PoketmonProps;
 }
 
 const config = {
@@ -22,9 +22,10 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
   isModalOpen,
   setIsModalOpen,
   imgPath,
-  props,
+  pokeProps,
 }) => {
   const onClick = () => setIsModalOpen(false);
+  console.log(pokeProps);
 
   return (
     <>
@@ -46,17 +47,13 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontSize={FontSize.XL}
                   />
                   <TextBox
-                    content={props.id ? props.id.toString() : ""}
+                    content={pokeProps.pokeId ? pokeProps.pokeId.toString() : ""}
                     fontWeight={FontWeight.EXTRABOLD}
                     fontSize={FontSize.LG}
                   />
                 </div>
                 <TextBox
-                  content={
-                    props.name
-                      ? props.name.replace("-female", "").replace("-male", "")
-                      : ""
-                  }
+                  content={pokeProps.pokeName? pokeProps.pokeName.replace("-female", "").replace("-male", ""): ""}
                   fontWeight={FontWeight.SEMIBOLD}
                   fontSize={FontSize.XL}
                 />
@@ -81,7 +78,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-slate-500"
                   />
                   <TextBox
-                    content={props.types ? props.types : ""}
+                    content={pokeProps.types ? pokeProps.types : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -97,7 +94,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-slate-500"
                   />
                   <TextBox
-                    content={props.species ? props.species : ""}
+                    content={pokeProps.species ? pokeProps.species : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -112,7 +109,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-red-500"
                   />
                   <TextBox
-                    content={props.hp ? props.hp.toString() : ""}
+                    content={pokeProps.hp ? pokeProps.hp.toString() : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -125,7 +122,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-red-500"
                   />
                   <TextBox
-                    content={props.attack ? props.attack.toString() : ""}
+                    content={pokeProps.attack ? pokeProps.attack.toString() : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -140,7 +137,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-blue-500"
                   />
                   <TextBox
-                    content={props.defense ? props.defense.toString() : ""}
+                    content={pokeProps.defense ? pokeProps.defense.toString() : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -153,7 +150,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-blue-500"
                   />
                   <TextBox
-                    content={props.speed ? props.speed.toString() : ""}
+                    content={pokeProps.speed ? pokeProps.speed.toString() : ""}
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -169,8 +166,8 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                   />
                   <TextBox
                     content={
-                      props.specialDefense
-                        ? props.specialDefense.toString()
+                      pokeProps.specialDefense
+                        ? pokeProps.specialDefense.toString()
                         : ""
                     }
                     fontWeight={FontWeight.BOLD}
@@ -186,7 +183,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                   />
                   <TextBox
                     content={
-                      props.specialAttack ? props.specialAttack.toString() : ""
+                      pokeProps.specialAttack ? pokeProps.specialAttack.toString() : ""
                     }
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
@@ -206,8 +203,8 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
               />
             </Divider>
             <div className="flex flex-col h-12 bg-transparent items-start overflow-scroll scrollbar-hide">
-              {props.desc &&
-                props.desc.split(".").map((w, idx) => {
+              {pokeProps.desc &&
+                pokeProps.desc.split(".").map((w, idx) => {
                   if (w.length <= 1) {
                     return;
                   }

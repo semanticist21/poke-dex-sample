@@ -35,7 +35,6 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
         uniqueId: Number(v.replace(".png", "")),
       })
     );
-
     return itemPropsArr;
   }, []);
 

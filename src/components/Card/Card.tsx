@@ -22,7 +22,7 @@ const Card: React.FC<CardProps> = ({
   uniqueId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [props, setProps] = useState<PoketmonProps>({ name: title });
+  const [Pokeprops, setPokeProps] = useState<PoketmonProps>({});
 
   const indexMemo = useMemo(() => {
     let value = index.toString();
@@ -36,18 +36,19 @@ const Card: React.FC<CardProps> = ({
   }, [index]);
 
   useEffect(() => {
-    let tempProps: PoketmonProps = { name: title };
-    tempProps.id = uniqueId;
+    let tempProps: PoketmonProps = {};
+    tempProps.pokeId = uniqueId;
 
     const fetchDefaultInfo = async () => {
-      const url = genPokeUrl(tempProps.id!);
+      const url = genPokeUrl(tempProps.pokeId!);
       const data: TDataResp = await getResp(url);
 
       if (data instanceof AxiosError) {
         return;
       }
 
-      props.speciesUrl = data.data.species.url;
+      tempProps.speciesUrl = data.data.species.url;
+      tempProps.pokeName = data.data.name;
 
       const stats = data.data.stats;
       if (!stats) {
@@ -71,7 +72,7 @@ const Card: React.FC<CardProps> = ({
     };
 
     const fetchDesc = async () => {
-      const url = props.speciesUrl!;
+      const url = tempProps.speciesUrl!;
       const data: TDataResp = await getResp(url);
 
       if (data instanceof AxiosError) {
@@ -104,11 +105,11 @@ const Card: React.FC<CardProps> = ({
     const doJobs = async () => {
       await fetchDefaultInfo();
       await fetchDesc();
-      setProps({...tempProps});
+      setPokeProps({ ...tempProps });
     };
 
     doJobs();
-  }, []);
+  }, [index]);
 
   return (
     <>
@@ -143,7 +144,7 @@ const Card: React.FC<CardProps> = ({
           imgPath={imgPath}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          props={props}
+          pokeProps={Pokeprops}
         />
       )}
     </>
