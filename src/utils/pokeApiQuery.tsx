@@ -4,12 +4,29 @@ import { QueryFunction, QueryKey, useQuery } from "@tanstack/react-query";
 import { error } from "console";
 import axiosRetry from "axios-retry";
 
+
+// axios function - modified
+// poke index => card index - 1
+export const genPokeUrlLimit = (limit: number, offset: number) =>
+  `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset - 1}`;
+
 // axios functions
+
+// deprecated
 export const genPokeUrl = (id: number) =>
   `https://pokeapi.co/api/v2/pokemon/${id}`;
-export const requestByAxios = (url: string) => {
-  axios.get(url);
+
+export const getResp = async (url: string) => {
+  axiosRetry(axios, { retries: 1 });
+
+  const pipeline = await axios
+    .get(url)
+    .then((resp) => resp)
+    .catch((err) => err);
+
+  return pipeline;
 };
+
 export const getAllResp = async (urls: Array<string>) => {
   axiosRetry(axios, { retries: 1 });
 
@@ -29,7 +46,7 @@ export const getAllResp = async (urls: Array<string>) => {
     });
 
   await Promise.all(pipeline);
-  return resps; 
+  return resps;
 };
 
 // fetch functions

@@ -1,3 +1,5 @@
+import { AxiosError, AxiosResponse } from "axios";
+
 // Color Types
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -9,7 +11,7 @@ type TXT_COLOR_CLASS = `$text-${string}-${string}`;
 type BG_COLOR_CLASS_NO_WEIGHT = `bg-${string}`;
 type BG_COLOR_CLASS = `$bg-${string}-${string}`;
 
-export type Color =
+export type TColor =
   | RGB
   | RGBA
   | HEX
@@ -17,3 +19,5 @@ export type Color =
   | TXT_COLOR_CLASS
   | BG_COLOR_CLASS_NO_WEIGHT
   | BG_COLOR_CLASS;
+
+export type TDataResp = AxiosError | AxiosResponse;

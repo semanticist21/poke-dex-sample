@@ -13,13 +13,13 @@ const BasicButton: React.FC<BasicButtonProps> = ({
   ...props
 }) => {
   const base =
-    "font-bold py-2 px-4 rounded-sm transition duration-150 ease-in-out w-6 ring-gray-100";
+    "font-bold py-2 px-4 rounded-sm transition duration-100 ease-in-out w-6 ring-gray-100";
 
   const disabledStyle = disabled
     ? "bg-gray-500 text-gray-300 cursor-not-allowed"
-    : "bg-gray-100 opacity-70 text-gray-800 hover:bg-gray-100 active:bg-gray-200 active:opacity-100";
+    : "bg-gray-100 opacity-70 text-gray-700 hover:bg-gray-100 active:bg-gray-200 active:opacity-100";
 
-  const ActiveStyle = isActive ? "" : "bg-gray-200 opacity-100";
+  const ActiveStyle = isActive ? "bg-gray-400 text-gray-900" : "bg-gray-200 opacity-100";
 
   return (
     <button

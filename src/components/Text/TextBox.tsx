@@ -1,13 +1,13 @@
 import strsToClass from "../../utils/classConverter";
 import { FontSize, FontWeight } from "../../data/enums";
-import { Color } from "../../data/types";
+import { TColor } from "../../data/types";
 
 export interface TextBoxProps {
   content: string;
   fontSize?: FontSize;
   fontWeight?: FontWeight;
-  fontColor?: Color;
-  bgColor?: Color;
+  fontColor?: TColor;
+  bgColor?: TColor;
 }
 
 const TextBox: React.FC<TextBoxProps> = ({

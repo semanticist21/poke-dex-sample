@@ -1,6 +1,5 @@
 import strsToClass from "utils/classConverter";
-import errorImg from "../asset/imgs/0.png";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export interface CardImageContainerProps {
   imgPath?: string;
@@ -24,7 +23,9 @@ const CardImageContainer: React.FC<CardImageContainerProps> = ({
         className={strsToClass(base, bgColor)}
         src={`${process.env.PUBLIC_URL}${imgPath}`}
         alt={alt}
-        onError={(e) => (e.currentTarget.src = `${process.env.PUBLIC_URL}/asset/imgs/0.png`)}
+        onError={(e) =>
+          (e.currentTarget.src = `${process.env.PUBLIC_URL}/asset/imgs/0.png`)
+        }
       />
     </>
   );

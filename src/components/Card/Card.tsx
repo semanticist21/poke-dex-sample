@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import CardImageContainer from "./CardImageConatiner";
+import CardImageContainer from "../CardImageContainer/CardImageConatiner";
 import TextBox from "../Text/TextBox";
 import { FontSize, FontWeight } from "data/enums";
 
@@ -22,10 +22,10 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
   }, [index]);
 
   return (
-    <div className="my-[1.35rem]">
-      <div className="flex min-w-[30rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] bg-opacity-100 hover:bg-gray-50">
+    <div className="my-[1.35rem] select-none">
+      <div className="flex min-w-[30rem] w-full h-[8.2rem] ps-3 py-4 rounded-[0.75rem] shadow-[0rem_0rem_2rem_-0.8rem_rgba(0,0,0,1.0)] hover:bg-gray-200 hover:bg-opacity-30 active:bg-gray-200 active:bg-opacity-90 bg-opacity-30 overflow-visible">
         {<CardImageContainer imgPath={imgPath} />}
-        <div className="flex items-center content-center ps-7">
+        <div className="flex items-center content-center ps-7 opacity-70">
           <TextBox
             content={title}
             fontSize={FontSize.XL2}

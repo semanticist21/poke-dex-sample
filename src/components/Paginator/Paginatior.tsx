@@ -1,11 +1,12 @@
 import { isDisabled } from "@testing-library/user-event/dist/utils";
-import BasicButton from "components/Button/DefaultButton";
+import BasicButton from "components/DefaultButton/DefaultButton";
 import { useEffect, useState } from "react";
 
 export interface PaginatorProps {
   itemTotalCnt: number;
   limit: number;
   currentPage: number;
+  isLoading: boolean;
   setCurrentPage: (page: number) => void;
 }
 
@@ -13,6 +14,7 @@ const Paginator: React.FC<PaginatorProps> = ({
   itemTotalCnt: total,
   limit,
   currentPage,
+  isLoading,
   setCurrentPage,
 }) => {
   const buttonCnt = 5;
@@ -24,7 +26,7 @@ const Paginator: React.FC<PaginatorProps> = ({
 
   useEffect(() => {
     setMaxPage(Math.ceil(total / limit));
-  }, [limit]);
+  }, [total, limit]);
 
   useEffect(() => {
     const start = buttonSet[0];
@@ -52,16 +54,19 @@ const Paginator: React.FC<PaginatorProps> = ({
     }
   }, [currentPage]);
 
+  const setPage = (val: number) => {
+    if (val > maxPage) return;
+    if (isLoading) return;
+    setCurrentPage(val);
+  };
+
   return (
-    <div className="flex w-screen justify-center">
-      <BasicButton
-        onClick={() => setCurrentPage(1)}
-        disabled={currentPage <= 5}
-      >
+    <div className="flex w-screen justify-center space-x-[0.125rem]">
+      <BasicButton onClick={() => setPage(1)} disabled={currentPage <= 5}>
         ≤
       </BasicButton>
       <BasicButton
-        onClick={() => setCurrentPage(currentPage - 1)}
+        onClick={() => setPage(currentPage - 1)}
         disabled={currentPage === 1}
       >
         &lt;
@@ -71,26 +76,22 @@ const Paginator: React.FC<PaginatorProps> = ({
           <BasicButton key={x} onClick={() => {}} isActive={true}>
             {x}
           </BasicButton>
-        ) : (
-          <BasicButton
-            key={x}
-            onClick={() => {
-              if (x > maxPage) return;
-              setCurrentPage(x);
-            }}
-          >
-            {x <= maxPage ? x : "-"}
+        ) : x <= maxPage ? (
+          <BasicButton key={x} onClick={() => setPage(x)}>
+            {x}
           </BasicButton>
+        ) : (
+          <div key={x}></div>
         )
       )}
       <BasicButton
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() => setPage(currentPage + 1)}
         disabled={currentPage === maxPage}
       >
         &gt;
       </BasicButton>
       <BasicButton
-        onClick={() => setCurrentPage(maxPage)}
+        onClick={() => setPage(maxPage)}
         disabled={currentPage === maxPage}
       >
         ≥

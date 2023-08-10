@@ -1,4 +1,5 @@
-import CardItemList from "components/Card/CardItemList";
+import CardItemList from "components/CardItemList/CardItemList";
+import PokeBallImg from "components/PokeballImg/PokeballImg";
 import Card from "../components/Card/Card";
 import DescTextBox from "../components/Text/DescTextBox";
 import Header from "../components/Text/Header";
@@ -13,7 +14,12 @@ const MainPage = () => {
           <DescTextBox />
           <div className="h-1 bg-transparent" />
         </div>
-        <CardItemList limit={10}/>
+        <CardItemList limit={10} />
+      </div>
+      <div className="flex justify-end absolute z-[-1] w-full h-full bottom-32 left-32">
+        <div className="absolute w-96 h-auto">
+          <PokeBallImg />
+        </div>
       </div>
     </div>
   );
