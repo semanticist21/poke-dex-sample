@@ -81,7 +81,7 @@ const Paginator: React.FC<PaginatorProps> = ({
             {x}
           </BasicButton>
         ) : (
-          <div key={x}></div>
+          <div key={x} className="absolute h-0 w-0 bg-transparent"></div>
         )
       )}
       <BasicButton

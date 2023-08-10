@@ -1,21 +1,16 @@
 import axios, { AxiosResponse } from "axios";
-import getImgPathDic from "./imgPathDic";
-import { QueryFunction, QueryKey, useQuery } from "@tanstack/react-query";
-import { error } from "console";
 import axiosRetry from "axios-retry";
-
 
 // axios function - modified
 // poke index => card index - 1
-export const genPokeUrlLimit = (limit: number, offset: number) =>
-  `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset - 1}`;
-
-// axios functions
-
-// deprecated
+export const genPokeNamesUrlLimit = (limit: number, offset: number) =>
+  `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
 export const genPokeUrl = (id: number) =>
   `https://pokeapi.co/api/v2/pokemon/${id}`;
+export const genPokeDescUrl = (id: number) =>
+  `https://pokeapi.co/api/v2/pokemon-species/${id}`;
 
+// axios functions
 export const getResp = async (url: string) => {
   axiosRetry(axios, { retries: 1 });
 

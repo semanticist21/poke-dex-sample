@@ -1,5 +1,5 @@
 import { FontSize, FontWeight } from "../../data/enums";
-import TextBox from "./TextBox";
+import TextBox from "../Text/TextBox";
 
 const DescTextBox: React.FC = ({}) => {
   const eWord = "é";
