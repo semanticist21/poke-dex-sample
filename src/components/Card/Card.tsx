@@ -28,8 +28,9 @@ const Card: React.FC<CardProps> = ({ imgPath, title = "", index }) => {
         <div className="flex items-center content-center ps-7">
           <TextBox
             content={title}
-            fontSize={FontSize.XL2}
+            fontSize={FontSize.XL}
             fontWeight={FontWeight.MEDIUM}
+            fontColor="text-[#394250]"
           />
         </div>
         <div className="ml-auto mt-auto pe-4 pb-1 select-none">

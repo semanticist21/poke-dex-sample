@@ -21,7 +21,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
     dic.forEach((v, k) =>
       itemPropsArr.push({
         imgPath: `/asset/imgs/${v}`,
-        index: itemPropsArr.length,
+        index: itemPropsArr.length+1,
       })
     );
 
