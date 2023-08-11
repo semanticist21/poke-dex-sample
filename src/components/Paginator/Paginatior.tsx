@@ -1,4 +1,3 @@
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 import BasicButton from "components/DefaultButton/DefaultButton";
 import { useEffect, useState } from "react";
 
@@ -52,7 +51,7 @@ const Paginator: React.FC<PaginatorProps> = ({
         setButtonSet(buttonSet.map((x) => x + buttonCnt));
         break;
     }
-  }, [currentPage]);
+  }, [currentPage, buttonSet, initialButtonSet, maxPage]);
 
   const setPage = (val: number) => {
     if (val > maxPage) return;

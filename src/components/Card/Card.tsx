@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import CardImageContainer from "../CardImageContainer/CardImageConatiner";
-import TextBox from "../Text/TextBox";
+import TextBox from "../TextBox/TextBox";
 import { FontSize, FontWeight } from "data/enums";
 import CharacterModal from "components/CharacterModal/CharacterModal";
 import { TDataResp } from "data/types";
@@ -109,7 +109,7 @@ const Card: React.FC<CardProps> = ({
     };
 
     doJobs();
-  }, [index]);
+  }, [index, uniqueId]);
 
   return (
     <>

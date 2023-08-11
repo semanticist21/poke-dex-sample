@@ -1,7 +1,7 @@
 import { FontSize, FontWeight } from "../../data/enums";
-import TextBox from "../Text/TextBox";
+import TextBox from "../TextBox/TextBox";
 
-const Header: React.FC = ({}) => {
+const Header: React.FC = () => {
   const eWord = "é";
   const titleF = "Pok";
   const titleB = "dex";

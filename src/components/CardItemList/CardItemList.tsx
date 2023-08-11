@@ -1,14 +1,9 @@
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError,  } from "axios";
 import Paginator from "components/Paginator/Paginatior";
 import { TDataResp } from "data/types";
 import { useEffect, useMemo, useState } from "react";
 import getImgPathDic from "utils/imgPathDic";
-import {
-  genPokeUrl,
-  genPokeNamesUrlLimit,
-  getAllResp,
-  getResp,
-} from "utils/pokeApiQuery";
+import { getResp } from "utils/pokeApiQuery";
 import Card, { CardProps } from "../Card/Card";
 
 export interface CardItemListProps {
@@ -36,7 +31,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
       })
     );
     return itemPropsArr;
-  }, []);
+  }, [dic]);
 
   useEffect(() => {
     const doAllPokeNamesRequestAsync = async () => {
@@ -62,7 +57,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
     };
 
     doAllPokeNamesRequestAsync();
-  }, []);
+  }, [dic.size]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -77,7 +72,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
 
     setItemProps(newPropsWithName);
     setIsLoading(false);
-  }, [wholeNames, limit, currentPage]);
+  }, [wholeNames, limit, currentPage,wholeItem]);
 
   return (
     <div className="flex flex-col h-screen w-100%">

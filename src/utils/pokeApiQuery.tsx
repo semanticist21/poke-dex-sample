@@ -29,15 +29,14 @@ export const getAllResp = async (urls: Array<string>) => {
 
   const pipeline = urls
     .map((url) => axios.get(url))
-    .map((request) => {
-      return request
-        .then((resp) => {
-          resps.push(resp);
-        })
-        .catch((err) => {
-          console.log(err);
-          resps.push(null);
-        });
+    .map(async (request) => {
+      try {
+        const resp = await request;
+        resps.push(resp);
+      } catch (err) {
+        console.log(err);
+        resps.push(null);
+      }
     });
 
   await Promise.all(pipeline);
@@ -45,8 +44,8 @@ export const getAllResp = async (urls: Array<string>) => {
 };
 
 // fetch functions
-const fetchNameData = () => {};
-const fetchCharacterData = () => {};
+// const fetchNameData = () => {};
+// const fetchCharacterData = () => {};
 
 // usequery functions
 // const genUseQuery = (key: QueryKey, callback: QueryFunction) => {

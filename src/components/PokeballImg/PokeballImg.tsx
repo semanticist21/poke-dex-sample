@@ -8,7 +8,7 @@ const PokeBallImg = () => {
 
   return (
     <div className={strsToClass(opacity)}>
-      <img src={`${process.env.PUBLIC_URL}${imgPath}`} />
+      <img src={`${process.env.PUBLIC_URL}${imgPath}`} alt={imgPath}/>
     </div>
   );
 };

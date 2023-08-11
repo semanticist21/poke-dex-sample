@@ -1,6 +1,5 @@
 import CardItemList from "components/CardItemList/CardItemList";
 import PokeBallImg from "components/PokeballImg/PokeballImg";
-import Card from "../components/Card/Card";
 import DescTextBox from "../components/DescTextBox/DescTextBox";
 import Header from "../components/Header/Header";
 

@@ -1,6 +1,6 @@
 import { Divider, Modal } from "antd";
 import CardImageContainer from "components/CardImageContainer/CardImageConatiner";
-import TextBox from "components/Text/TextBox";
+import TextBox from "components/TextBox/TextBox";
 import { FontSize, FontWeight } from "data/enums";
 import { PoketmonProps } from "interface/PoketmonProps";
 
@@ -25,7 +25,6 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
   pokeProps,
 }) => {
   const onClick = () => setIsModalOpen(false);
-  console.log(pokeProps);
 
   return (
     <>
@@ -47,13 +46,21 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontSize={FontSize.XL}
                   />
                   <TextBox
-                    content={pokeProps.pokeId ? pokeProps.pokeId.toString() : ""}
+                    content={
+                      pokeProps.pokeId ? pokeProps.pokeId.toString() : ""
+                    }
                     fontWeight={FontWeight.EXTRABOLD}
                     fontSize={FontSize.LG}
                   />
                 </div>
                 <TextBox
-                  content={pokeProps.pokeName? pokeProps.pokeName.replace("-female", "").replace("-male", ""): ""}
+                  content={
+                    pokeProps.pokeName
+                      ? pokeProps.pokeName
+                          .replace("-female", "")
+                          .replace("-male", "")
+                      : ""
+                  }
                   fontWeight={FontWeight.SEMIBOLD}
                   fontSize={FontSize.XL}
                 />
@@ -122,7 +129,9 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-red-500"
                   />
                   <TextBox
-                    content={pokeProps.attack ? pokeProps.attack.toString() : ""}
+                    content={
+                      pokeProps.attack ? pokeProps.attack.toString() : ""
+                    }
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -137,7 +146,9 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     fontColor="text-blue-500"
                   />
                   <TextBox
-                    content={pokeProps.defense ? pokeProps.defense.toString() : ""}
+                    content={
+                      pokeProps.defense ? pokeProps.defense.toString() : ""
+                    }
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
                   />
@@ -183,7 +194,9 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                   />
                   <TextBox
                     content={
-                      pokeProps.specialAttack ? pokeProps.specialAttack.toString() : ""
+                      pokeProps.specialAttack
+                        ? pokeProps.specialAttack.toString()
+                        : ""
                     }
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL}
@@ -204,20 +217,19 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
             </Divider>
             <div className="flex flex-col h-12 bg-transparent items-start overflow-scroll scrollbar-hide">
               {pokeProps.desc &&
-                pokeProps.desc.split(".").map((w, idx) => {
-                  if (w.length <= 1) {
-                    return;
-                  }
-
-                  return (
-                    <TextBox
-                      key={idx}
-                      content={w.length ? `${w.trim()}.` : ""}
-                      fontWeight={FontWeight.SEMIBOLD}
-                      fontSize={FontSize.BASE}
-                    />
-                  );
-                })}
+                pokeProps.desc
+                  .split(".")
+                  .filter((w) => w.length > 1)
+                  .map((w, idx) => {
+                    return (
+                      <TextBox
+                        key={idx}
+                        content={w.length ? `${w.trim()}.` : ""}
+                        fontWeight={FontWeight.SEMIBOLD}
+                        fontSize={FontSize.BASE}
+                      />
+                    );
+                  })}
             </div>
           </div>
         </div>
