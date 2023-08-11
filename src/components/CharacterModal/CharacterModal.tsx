@@ -74,9 +74,10 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mx-5 mt-2 mb-0 justify-between items-start w-full bg-red-200 space-y-1">
+            <div className="flex flex-col mx-5 mt-2 mb-0 justify-between items-start w-full space-y-1">
               {/* 단일 로우 영역 */}
-              <div className="flex flex-row justify-between w-full pl-5">
+              <div className="flex flex-row justify-between w-full pl-5 pt-5">
+                {/*  */}
                 <div className="flex flex-row items-center space-x-3">
                   <TextBox
                     content="TYPE"
@@ -91,6 +92,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                   />
                 </div>
               </div>
+              <div className=" h-1"/>
               {/*  */}
               <div className="flex flex-row justify-between w-full pl-5">
                 <div className="flex flex-row items-center space-x-3">
