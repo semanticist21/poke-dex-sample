@@ -2,9 +2,25 @@ import axios, { AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
 
 // axios function - modified
-// poke index => card index - 1
+// configuration
+// environment
+// pokeapi.https://pokeapi.co/api/v2/ => env로 변경.
+// fetch 함수를 훅으로 뺼 것
+// hook -> 각 컴포넌트 마다 호출하고 파라미터 형식으로
+// 로직 공통으로 빼놓을걸
+// url을 컴포넌트에서 넣음.
+// 에러 처리 액시오스 파일에서 공통처리
+// 엑시오스에서 url 받으면 처리하고, 나머지는 알아서하는 방식으로 할 것.
+
+// 세부상세 스피너넣을 것.
+// Pokedex
+
+
 export const genPokeNamesUrlLimit = (limit: number, offset: number) =>
   `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+export const genPokeDescsUrlLimit = (limit: number, offset: number) =>
+  `https://pokeapi.co/api/v2/pokemon-species?limit=${limit}&offset=${offset}`;
+
 export const genPokeUrl = (id: number) =>
   `https://pokeapi.co/api/v2/pokemon/${id}`;
 export const genPokeDescUrl = (id: number) =>

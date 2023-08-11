@@ -126,7 +126,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     content="ATK"
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL2}
-                    fontColor="text-red-500"
+                    fontColor="text-red-500 pr-10"
                   />
                   <TextBox
                     content={
@@ -158,7 +158,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                     content="SPEED"
                     fontWeight={FontWeight.BOLD}
                     fontSize={FontSize.XL2}
-                    fontColor="text-blue-500"
+                    fontColor="text-blue-500 pr-2"
                   />
                   <TextBox
                     content={pokeProps.speed ? pokeProps.speed.toString() : ""}
