@@ -8,6 +8,7 @@ export interface TextBoxProps {
   fontWeight?: FontWeight;
   fontColor?: TColor;
   bgColor?: TColor;
+  additionalClass?: string;
 }
 
 const TextBox: React.FC<TextBoxProps> = ({
@@ -16,11 +17,16 @@ const TextBox: React.FC<TextBoxProps> = ({
   fontWeight = FontWeight.NORMAL,
   fontColor = "text-black-500",
   bgColor = "bg-transparent",
+  additionalClass = "",
 }) => {
   const base = "text-center items-center";
   const input = [fontSize, fontWeight, fontColor, bgColor];
 
-  return <span className={strsToClass(base, ...input)}>{content}</span>;
+  return (
+    <span className={strsToClass(base, additionalClass, ...input)}>
+      {content}
+    </span>
+  );
 };
 
 export default TextBox;

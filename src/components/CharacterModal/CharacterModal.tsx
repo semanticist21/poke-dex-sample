@@ -74,9 +74,9 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                 </div>
               </div>
             </div>
-            <div className="flex flex-col mx-5 mt-2 mb-0 justify-around items-center w-full">
+            <div className="flex flex-col mx-5 mt-2 mb-0 justify-between items-start w-full bg-red-200 space-y-1">
               {/* 단일 로우 영역 */}
-              <div className="flex flex-row justify-between w-full pl-5 pe-5">
+              <div className="flex flex-row justify-between w-full pl-5">
                 <div className="flex flex-row items-center space-x-3">
                   <TextBox
                     content="TYPE"
@@ -92,7 +92,7 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                 </div>
               </div>
               {/*  */}
-              <div className="flex flex-row justify-between w-full pl-5 pe-5">
+              <div className="flex flex-row justify-between w-full pl-5">
                 <div className="flex flex-row items-center space-x-3">
                   <TextBox
                     content="SPECIES"
@@ -107,100 +107,116 @@ const CharacterModal: React.FC<CharacterModalProps> = ({
                   />
                 </div>
               </div>
-              <div className="flex flex-row justify-between w-full pl-5 pe-20">
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="HP"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-red-500"
-                  />
-                  <TextBox
-                    content={pokeProps.hp ? pokeProps.hp.toString() : ""}
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
+              {/* 스탯 영역 */}
+              <div className="flex flex-col justify-evenly h-[80%] w-full">
+                {/* 1번째 줄 */}
+                <div className="grid grid-cols-2 gap-0 w-full pl-5">
+                  {/* HP */}
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="HP"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-red-500"
+                      />
+                    <TextBox
+                      content={pokeProps.hp ? pokeProps.hp.toString() : ""}
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-[4.5rem]"
+                    />
+                  </div>
+                  {/* ATK */}
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="ATK"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-red-500 pr-10"
+                    />
+                    <TextBox
+                      content={
+                        pokeProps.attack ? pokeProps.attack.toString() : ""
+                      }
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-4"
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="ATK"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-red-500 pr-10"
-                  />
-                  <TextBox
-                    content={
-                      pokeProps.attack ? pokeProps.attack.toString() : ""
-                    }
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
+                {/* 2번째 줄 */}
+                <div className="grid grid-cols-2 gap-0 w-full pl-5">
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="DEF"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-blue-500"
+                    />
+                    <TextBox
+                      content={
+                        pokeProps.defense ? pokeProps.defense.toString() : ""
+                      }
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-16"
+                    />
+                  </div>
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="SPEED"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-blue-500 pr-2"
+                    />
+                    <TextBox
+                      content={
+                        pokeProps.speed ? pokeProps.speed.toString() : ""
+                      }
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-6"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-row justify-between w-full pl-5 pe-20">
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="DEF"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-blue-500"
-                  />
-                  <TextBox
-                    content={
-                      pokeProps.defense ? pokeProps.defense.toString() : ""
-                    }
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
-                </div>
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="SPEED"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-blue-500 pr-2"
-                  />
-                  <TextBox
-                    content={pokeProps.speed ? pokeProps.speed.toString() : ""}
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row justify-between w-full pl-5 pe-20">
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="SP DEF"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-violet-500"
-                  />
-                  <TextBox
-                    content={
-                      pokeProps.specialDefense
-                        ? pokeProps.specialDefense.toString()
-                        : ""
-                    }
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
-                </div>
-                <div className="flex flex-row items-center space-x-3">
-                  <TextBox
-                    content="SP ATK"
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL2}
-                    fontColor="text-violet-500"
-                  />
-                  <TextBox
-                    content={
-                      pokeProps.specialAttack
-                        ? pokeProps.specialAttack.toString()
-                        : ""
-                    }
-                    fontWeight={FontWeight.BOLD}
-                    fontSize={FontSize.XL}
-                  />
+                {/* 3번째 줄 */}
+                <div className="grid grid-cols-2 gap-0 w-full pl-5">
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="SP DEF"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-violet-500"
+                    />
+                    <TextBox
+                      content={
+                        pokeProps.specialDefense
+                          ? pokeProps.specialDefense.toString()
+                          : ""
+                      }
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-8"
+                    />
+                  </div>
+                  <div className="flex flex-row items-center space-x-3">
+                    <TextBox
+                      content="SP ATK"
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL2}
+                      fontColor="text-violet-500"
+                    />
+                    <TextBox
+                      content={
+                        pokeProps.specialAttack
+                          ? pokeProps.specialAttack.toString()
+                          : ""
+                      }
+                      fontWeight={FontWeight.BOLD}
+                      fontSize={FontSize.XL}
+                      additionalClass="ps-6"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

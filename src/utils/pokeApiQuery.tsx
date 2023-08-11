@@ -17,14 +17,14 @@ import axiosRetry from "axios-retry";
 
 
 export const genPokeNamesUrlLimit = (limit: number, offset: number) =>
-  `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+  `${process.env.REACT_APP_BASE_API}/pokemon?limit=${limit}&offset=${offset}`;
 export const genPokeDescsUrlLimit = (limit: number, offset: number) =>
-  `https://pokeapi.co/api/v2/pokemon-species?limit=${limit}&offset=${offset}`;
+  `${process.env.REACT_APP_BASE_API}/pokemon-species?limit=${limit}&offset=${offset}`;
 
 export const genPokeUrl = (id: number) =>
-  `https://pokeapi.co/api/v2/pokemon/${id}`;
+  `${process.env.REACT_APP_BASE_API}/pokemon/${id}`;
 export const genPokeDescUrl = (id: number) =>
-  `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+  `${process.env.REACT_APP_BASE_API}F/pokemon-species/${id}`;
 
 // axios functions
 export const getResp = async (url: string) => {

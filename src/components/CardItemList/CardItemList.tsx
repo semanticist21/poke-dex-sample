@@ -1,4 +1,4 @@
-import { AxiosError,  } from "axios";
+import { AxiosError } from "axios";
 import Paginator from "components/Paginator/Paginatior";
 import { TDataResp } from "data/types";
 import { useEffect, useMemo, useState } from "react";
@@ -11,6 +11,8 @@ export interface CardItemListProps {
 }
 
 const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
+
+  console.log(process.env.REACT_APP_BASE_API)
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -72,7 +74,7 @@ const CardItemList: React.FC<CardItemListProps> = ({ limit }) => {
 
     setItemProps(newPropsWithName);
     setIsLoading(false);
-  }, [wholeNames, limit, currentPage,wholeItem]);
+  }, [wholeNames, limit, currentPage, wholeItem]);
 
   return (
     <div className="flex flex-col h-screen w-100%">
