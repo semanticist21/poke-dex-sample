@@ -4,7 +4,7 @@ export interface PokeBallImgProps {}
 
 const PokeBallImg = () => {
   const imgPath = "/asset/imgs/pokeball.png";
-  const opacity = "opacity-20";
+  const opacity = "opacity-10";
 
   return (
     <div className={strsToClass(opacity)}>

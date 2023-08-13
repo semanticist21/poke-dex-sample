@@ -1,115 +1,17 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import CardImageContainer from "../CardImageContainer/CardImageConatiner";
 import TextBox from "../TextBox/TextBox";
 import { FontSize, FontWeight } from "data/enums";
-import CharacterModal from "components/CharacterModal/CharacterModal";
-import { TDataResp } from "data/types";
-import { genPokeUrl, getResp } from "utils/pokeApiQuery";
-import { AxiosError } from "axios";
-import { PoketmonProps } from "interface/PoketmonProps";
+import ModalCharacter from "components/ModalCharacter/ModalCharacter";
 
 export interface CardProps {
   imgPath?: string;
   title?: string;
-  index: number;
   uniqueId: number;
 }
 
-const Card: React.FC<CardProps> = ({
-  imgPath,
-  title = "",
-  index,
-  uniqueId,
-}) => {
+const Card: React.FC<CardProps> = ({ imgPath, title = "", uniqueId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [Pokeprops, setPokeProps] = useState<PoketmonProps>({});
-
-  const indexMemo = useMemo(() => {
-    let value = index.toString();
-    while (value.length < 3) {
-      value = `0${value}`;
-    }
-
-    value = `#${value}`;
-
-    return value;
-  }, [index]);
-
-  useEffect(() => {
-    let tempProps: PoketmonProps = {};
-    tempProps.pokeId = uniqueId;
-
-    const fetchDefaultInfo = async () => {
-      const url = genPokeUrl(tempProps.pokeId!);
-      const data: TDataResp = await getResp(url);
-
-      if (data instanceof AxiosError) {
-        return;
-      }
-
-      tempProps.speciesUrl = data.data.species.url;
-      tempProps.pokeName = data.data.name;
-
-      const stats = data.data.stats;
-      if (!stats) {
-        return;
-      }
-      tempProps.hp = stats[0].base_stat;
-      tempProps.attack = stats[1].base_stat;
-      tempProps.defense = stats[2].base_stat;
-      tempProps.speed = stats[3].base_stat;
-      tempProps.specialAttack = stats[4].base_stat;
-      tempProps.specialDefense = stats[5].base_stat;
-
-      const types: any[] = data.data.types;
-      if (!types) {
-        return;
-      }
-
-      tempProps.types = types
-        .map((type) => type.type.name)
-        .reduce((a: string, b: string) => a.concat(`, ${b}`));
-    };
-
-    const fetchDesc = async () => {
-      const url = tempProps.speciesUrl!;
-      const data: TDataResp = await getResp(url);
-
-      if (data instanceof AxiosError) {
-        return;
-      }
-
-      tempProps.species = data.data.name ? data.data.name : "";
-
-      const descs: any[] = data.data.flavor_text_entries;
-      if (!descs) {
-        return;
-      }
-
-      const en_desc: string[] = descs
-        .filter((desc) => desc.language.name === "en")
-        .map((desc) => desc.flavor_text);
-      const kr_desc: string[] = descs
-        .filter((desc) => desc.language.name === "ko")
-        .map((desc) => desc.flavor_text);
-
-      if (kr_desc.length) {
-        tempProps.desc = kr_desc.at(kr_desc.length - 1)!.replaceAll("\n", " ");
-      } else if (en_desc.length) {
-        tempProps.desc = en_desc.at(en_desc.length - 1)!.replaceAll("\n", " ");
-      } else {
-        return;
-      }
-    };
-
-    const doJobs = async () => {
-      await fetchDefaultInfo();
-      await fetchDesc();
-      setPokeProps({ ...tempProps });
-    };
-
-    doJobs();
-  }, [index, uniqueId]);
 
   return (
     <>
@@ -130,7 +32,7 @@ const Card: React.FC<CardProps> = ({
             </div>
             <div className="ml-auto mt-auto pe-4 pb-1 select-none">
               <TextBox
-                content={`${indexMemo}`}
+                content={`${uniqueId}`}
                 fontSize={FontSize.XL3}
                 fontWeight={FontWeight.BOLD}
                 fontColor="text-[#0000001c]"
@@ -140,11 +42,11 @@ const Card: React.FC<CardProps> = ({
         </div>
       </button>
       {isModalOpen && (
-        <CharacterModal
+        <ModalCharacter
           imgPath={imgPath}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          pokeProps={Pokeprops}
+          uniqueId={uniqueId}
         />
       )}
     </>

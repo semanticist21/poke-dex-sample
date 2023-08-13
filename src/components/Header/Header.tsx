@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const color = "text-[#C4584F]"
 
   return (
-    <div className="flex items-start w-screen overflow-hidden select-none">
+    <div className="flex items-star w-44 overflow-hidden select-none">
       <TextBox
         content={titleF}
         fontWeight={FontWeight.BOLD}

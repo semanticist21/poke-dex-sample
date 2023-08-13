@@ -24,7 +24,7 @@ export const genPokeDescsUrlLimit = (limit: number, offset: number) =>
 export const genPokeUrl = (id: number) =>
   `${process.env.REACT_APP_BASE_API}/pokemon/${id}`;
 export const genPokeDescUrl = (id: number) =>
-  `${process.env.REACT_APP_BASE_API}F/pokemon-species/${id}`;
+  `${process.env.REACT_APP_BASE_API}/pokemon-species/${id}`;
 
 // axios functions
 export const getResp = async (url: string) => {
