@@ -141,7 +141,7 @@ const ModalCharacter: React.FC<ModalCharacterProps> = ({
                           content={infoObj?.stats?.[0]?.base_stat}
                           fontWeight={FontWeight.BOLD}
                           fontSize={FontSize.XL}
-                          additionalClass="ps-[4.7rem]"
+                          additionalClass="ps-[4.9rem]"
                         />
                       </div>
                       {/* ATK */}
@@ -156,7 +156,7 @@ const ModalCharacter: React.FC<ModalCharacterProps> = ({
                           content={infoObj?.stats?.[1]?.base_stat}
                           fontWeight={FontWeight.BOLD}
                           fontSize={FontSize.XL}
-                          additionalClass="ps-[1.1rem]"
+                          additionalClass="ps-[1.15rem]"
                         />
                       </div>
                     </div>
@@ -173,7 +173,7 @@ const ModalCharacter: React.FC<ModalCharacterProps> = ({
                           content={infoObj?.stats?.[2]?.base_stat}
                           fontWeight={FontWeight.BOLD}
                           fontSize={FontSize.XL}
-                          additionalClass="ps-[4.1rem]"
+                          additionalClass="ps-[4.2rem]"
                         />
                       </div>
                       <div className="flex flex-row items-center space-x-3">
@@ -187,7 +187,7 @@ const ModalCharacter: React.FC<ModalCharacterProps> = ({
                           content={infoObj?.stats?.[3]?.base_stat}
                           fontWeight={FontWeight.BOLD}
                           fontSize={FontSize.XL}
-                          additionalClass="ps-6"
+                          additionalClass="ps-[1.3rem]"
                         />
                       </div>
                     </div>
