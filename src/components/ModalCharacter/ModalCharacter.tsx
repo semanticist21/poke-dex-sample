@@ -3,7 +3,7 @@ import CardImageContainer from "components/CardImageContainer/CardImageConatiner
 import ModalDescBox from "components/ModalDescBox/ModalDescBox";
 import TextBox from "components/TextBox/TextBox";
 import { FontSize, FontWeight } from "data/enums";
-import useFetch from "hooks/useFetch";
+import useFetch, { queryTypes } from "hooks/useFetch";
 import { GlobalContext } from "provider/globalProvider";
 import { useContext, useState } from "react";
 
@@ -33,7 +33,7 @@ const ModalCharacter: React.FC<ModalCharacterProps> = ({
   const itemInfo = contextObj.originalItems.find(
     (item) => item.uniqueId === uniqueId
   );
-  const [infoObj, isLoading, error] = useFetch(itemInfo!.data.url, uniqueId);
+  const [infoObj, isLoading, error] = useFetch(itemInfo!.data.url, uniqueId, queryTypes.CARD);
   const onClick = () => setIsModalOpen(false);
 
   return (

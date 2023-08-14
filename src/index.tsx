@@ -13,6 +13,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       cacheTime: Infinity,
       staleTime: Infinity,
+      // 새로고침 시 refetch 기준?
     },
   },
 });

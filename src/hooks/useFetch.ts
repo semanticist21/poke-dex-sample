@@ -2,10 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import axiosRetry from "axios-retry";
 
-const useFetch = (url: string, id?: number, queryType: queryTypes = queryTypes.CARD) => {
-  const queryKey = Boolean(id)
-    ? genIdQuerykey(queryType, id!)
-    : genAllQueryKey();
+const useFetch = (
+  url: string,
+  id?: number,
+  queryType: queryTypes = queryTypes.CARD
+) => {
+  const queryKey =
+    Boolean(id) && !isNaN(id!)
+      ? genIdQuerykey(queryType, id!)
+      : genAllQueryKey();
 
   const { data, isLoading, error } = useQuery(
     queryKey,
@@ -20,6 +25,9 @@ const useFetch = (url: string, id?: number, queryType: queryTypes = queryTypes.C
 
   return [data, isLoading, null];
 };
+
+// API 자체 서비스
+// 공통 컴포넌트 -> 네트워크/컴포넌트/데이터 액세스 <->Ui
 
 const fetchByAxios = async (url: string) => {
   const client = axios.create();
@@ -39,7 +47,8 @@ export enum queryTypes {
 }
 
 export type TQueryKey = [queryTypes, number];
-export const genAllQueryKey = () => [queryTypes.ALL, 0];
-export const genIdQuerykey = (type: queryTypes, id: number) => [type, id];
+export const genAllQueryKey = () => [queryTypes.ALL, 1] as const;
+export const genIdQuerykey = (type: queryTypes, id: number) =>
+  [type, id] as const;
 
 export default useFetch;
